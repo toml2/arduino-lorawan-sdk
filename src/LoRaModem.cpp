@@ -46,7 +46,7 @@ char *LoRaModem::getLastErrorCode() {
 }
 
 char *LoRaModem::humanizeErrorCode(char *errorCode) {
-    char *errDict[10][2] = {
+    char *errDict[14][2] = {
         { "invalid_param", "An invalid parameter was sent to the modem." },
         { "keys_not_init", "The lora keys corresponding to the join mode (otaa or abp) were not properly configured." },
         { "no_free_ch", "All LoRa channels are currently busy." },
@@ -56,7 +56,11 @@ char *LoRaModem::humanizeErrorCode(char *errorCode) {
         { "not_joined", "The network is not joined." },
         { "frame_counter_err_rejoin_needed", "The frame counter rolled over, possible rejoin required" },
         { "invalid_data_len", "The application payload length is greater than the maximum application payload length corresponding to the current data rate" },
-        { "mac_err", "ACK not received back from the server" }
+        { "mac_err", "ACK not received back from the server" },
+		{ "invalid_class", "Invalid class" }, 
+		{ "multicast_keys_not_set", "multicast keys not set" },
+		{ "err", "error???" },
+		{ "radio_err", "Reception not successful, reception timeout occurred" }
     };
     for (auto i = 0; i < 10; ++i) {
         if (strcmp(errorCode, errDict[i][0]) == 0) {
